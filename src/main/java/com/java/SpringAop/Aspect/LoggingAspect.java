@@ -1,6 +1,8 @@
 package com.java.SpringAop.Aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -72,11 +74,21 @@ public class LoggingAspect {
 	}
 	/**
 	 * Arguments that passed to the target method and the same arguement passed to the advice
+	 * input argument that passed and enter the point cut expression and just specyfying the returning property
+	 * Mention this property in my advice argument
 	 *
 	 */
-	@Before("args(name)")
-	public void StringArgumentMethods(String name) {
-		System.out.println("A Method that takes String Argument has  been called,The value is "+ name);
+	@AfterReturning(pointcut="args(name)",returning="returnString")
+	public void StringArgumentMethods(String name,String returnString) {
+		System.out.println("A Method that takes String Argument has  been called,The value is "+ name+". The OutPut Values is "+returnString);
 	}
-
+	/**
+	 * After throwing catch all methods that match the pointcut expression and they are throwing runtime exception
+	 * @param name
+	 * @param ex
+	 */
+	@AfterThrowing(pointcut="args(name)",throwing="ex")
+	public void exceptionAdvice (String name,Exception ex) {
+		System.out.println("An Exception has been thrown"+ex);
+	}
 }

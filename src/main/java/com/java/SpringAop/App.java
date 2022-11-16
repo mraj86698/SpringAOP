@@ -10,6 +10,7 @@ public class App {
 		ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
 		ShapeService shapeService=context.getBean("shapeService",ShapeService.class);
 		shapeService.getCircle().setName("DummyName");
+		//shapeService.getCircle().setNameandReturn("DummyName");
 		System.out.println(shapeService.getCircle().getName());
 
 	}

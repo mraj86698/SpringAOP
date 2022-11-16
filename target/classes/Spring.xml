@@ -12,7 +12,7 @@
 	<property name="name" value="Triangle name"/>
 	</bean>
 	<bean name="circle" class="com.java.SpringAop.Model.Circle">
-	<property name="name" value="Circle name"/>
+	
 	</bean>
 	
 	<bean name="shapeService" class="com.java.SpringAop.Service.ShapeService" autowire="byName"/>
