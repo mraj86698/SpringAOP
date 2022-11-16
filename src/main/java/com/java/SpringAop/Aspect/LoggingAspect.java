@@ -1,5 +1,6 @@
 package com.java.SpringAop.Aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -27,6 +28,8 @@ public class LoggingAspect {
 	public void LoggingAdvice2() {
 		System.out.println("Advice run. Get third Method called");
 	}
+
+
 	@Before("allGetters()")
 	public void LoggingAdvice3() {
 		System.out.println("Advice run. Get fourth Method called");
@@ -56,5 +59,24 @@ public class LoggingAspect {
 //	 */
 //	@Pointcut("within (com.java.SpringAop.Model..*)")
 //	public void allCircleMethods() {}
+
+	/**
+	 * JoinPoint here which is an argument that spring passes whenever an advice is run contains 	information about the method.
+	 * JoinPoint has information about the actual method call that triggered this advice
+	 * If i write an advice with a join point as an argument
+	 * @param joinPoint
+	 */
+	@Before("allCircleMethods()")
+	public void LoggingAdvice5(JoinPoint joinPoint) {
+		//System.out.println(joinPoint.getTarget());
+	}
+	/**
+	 * Arguments that passed to the target method and the same arguement passed to the advice
+	 *
+	 */
+	@Before("args(String)")
+	public void StringArgumentMethods() {
+		System.out.println("A Method that takes String Argument has  been called");
+	}
 
 }
