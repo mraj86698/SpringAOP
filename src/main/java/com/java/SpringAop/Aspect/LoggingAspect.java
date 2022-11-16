@@ -74,9 +74,9 @@ public class LoggingAspect {
 	 * Arguments that passed to the target method and the same arguement passed to the advice
 	 *
 	 */
-	@Before("args(String)")
-	public void StringArgumentMethods() {
-		System.out.println("A Method that takes String Argument has  been called");
+	@Before("args(name)")
+	public void StringArgumentMethods(String name) {
+		System.out.println("A Method that takes String Argument has  been called,The value is "+ name);
 	}
 
 }
