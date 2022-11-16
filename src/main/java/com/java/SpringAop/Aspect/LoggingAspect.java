@@ -21,8 +21,9 @@ public class LoggingAspect {
 	 * get() open close is zero Argument
 	 * get(*) apply star for match one or more arguments
 	 * get(...) apply dot dot expression for any match of know for zero or more Arguments
+	 * to get all getters and all Circle Methods
 	 */
-	@Before("allGetters()")
+	@Before("allGetters() && allCircleMethods()")
 	public void LoggingAdvice2() {
 		System.out.println("Advice run. Get third Method called");
 	}
@@ -36,5 +37,24 @@ public class LoggingAspect {
 	 */
 	@Pointcut("execution (* get*())")
 	public void allGetters() {}
+	/**
+	 * A Point cut expression which is something like this at point cut execution,
+	 *  irrespective of public or anything,return type,method name ,parameter
+	 *  I Print all Circle Methods
+	 *
+	 */
+//	@Pointcut("execution (* *com.java.SpringAop.Model.Circle.*(..))")
+//	public void allCircleMethods() {}
+	/**
+	 * I Specify within and i give the class name again
+	 */
+	@Pointcut("within (com.java.SpringAop.Model.Circle)")
+	public void allCircleMethods() {}
+//	/**
+//	 * dot dot inside a method parameter is it can be the class add the route package
+//	 * its 0 or more thats the dot dot means
+//	 */
+//	@Pointcut("within (com.java.SpringAop.Model..*)")
+//	public void allCircleMethods() {}
 
 }
