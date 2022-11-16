@@ -1,8 +1,10 @@
 package com.java.SpringAop.Aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -32,10 +34,10 @@ public class LoggingAspect {
 	}
 
 
-	@Before("allGetters()")
-	public void LoggingAdvice3() {
-		System.out.println("Advice run. Get fourth Method called");
-	}
+//	@Before("allGetters()")
+//	public void LoggingAdvice3() {
+//		System.out.println("Advice run. Get fourth Method called");
+//	}
 	/**
 	 * one particular point cut expression to get applied to different advice methods
 	 * annotate a dummy method then use a dummy method reference for before annotation
@@ -66,6 +68,8 @@ public class LoggingAspect {
 	 * JoinPoint here which is an argument that spring passes whenever an advice is run contains 	information about the method.
 	 * JoinPoint has information about the actual method call that triggered this advice
 	 * If i write an advice with a join point as an argument
+	 *
+	 * Advice types of Spring Aop are @Before,@After,@AfterReturning,@AfterThrowing And @Around
 	 * @param joinPoint
 	 */
 	@Before("allCircleMethods()")
@@ -91,4 +95,25 @@ public class LoggingAspect {
 	public void exceptionAdvice (String name,Exception ex) {
 		System.out.println("An Exception has been thrown"+ex);
 	}
+	/**
+	 * To creating an Around Advice
+	 * @param proceedingJoinPoint
+	 * @return
+	 */
+	@Around("allGetters()")
+	public Object myAroundAdvice(ProceedingJoinPoint  proceedingJoinPoint) {
+		Object returnValue=null;
+		try {
+			System.out.println("Before Advice");
+			returnValue =proceedingJoinPoint.proceed();
+			System.out.println("After Returning");
+		}catch (Throwable e) {
+			System.out.println("After Throwing");
+		}
+		System.out.println("After Finally");
+		return returnValue;
+
+
+	}
+
 }
