@@ -97,10 +97,12 @@ public class LoggingAspect {
 	}
 	/**
 	 * To creating an Around Advice
+	 * @Loggable using Apply to new method without having to change the point cut expression
 	 * @param proceedingJoinPoint
 	 * @return
 	 */
-	@Around("allGetters()")
+	//@Around("allGetters()")
+	@Around("@annotation(com.java.SpringAop.Aspect.Loggable)")
 	public Object myAroundAdvice(ProceedingJoinPoint  proceedingJoinPoint) {
 		Object returnValue=null;
 		try {
@@ -109,6 +111,7 @@ public class LoggingAspect {
 			System.out.println("After Returning");
 		}catch (Throwable e) {
 			System.out.println("After Throwing");
+
 		}
 		System.out.println("After Finally");
 		return returnValue;
