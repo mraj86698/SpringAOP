@@ -14,6 +14,7 @@ public class ShapeService {
 	@Loggable
 	//Getters and Setters
 	public Circle getCircle() {
+		System.out.println("Circle getter is called");
 		return circle;
 	}
 	public void setCircle(Circle circle) {

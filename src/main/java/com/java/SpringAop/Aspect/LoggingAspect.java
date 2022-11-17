@@ -112,10 +112,14 @@ public class LoggingAspect {
 
 
 	}
-	/**
-	 * @PointCut Containing Two information over here one is the name of the pointer and another one is Expression
-	 */
-	//@Pointcut("execution (* get*())")
-	public void allGetters() {}
+//	/**
+//	 * @PointCut Containing Two information over here one is the name of the pointer and another one is Expression
+//	 */
+//	//@Pointcut("execution (* get*())")
+//	public void allGetters() {}
+
+	public void loggingAdvice() {
+		System.out.println("Logging from the Advice");
+	}
 
 }
