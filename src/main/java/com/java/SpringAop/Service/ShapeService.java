@@ -7,6 +7,10 @@ import com.java.SpringAop.Model.Triangle;
 public class ShapeService {
 	private Circle circle;
 	private Triangle triangle;
+	/**
+	 * Apply to new method without having to change the point cut expression
+	 * @return
+	 */
 	@Loggable
 	//Getters and Setters
 	public Circle getCircle() {

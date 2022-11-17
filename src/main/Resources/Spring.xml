@@ -18,4 +18,10 @@
 	<bean name="shapeService" class="com.java.SpringAop.Service.ShapeService" autowire="byName"/>
 	
 	<bean name="loggingAspect" class="com.java.SpringAop.Aspect.LoggingAspect"></bean>
+	<aop:config>
+		<aop:aspect id="loggingAspect" ref="loggingAspect">
+		<aop:pointcut id="allGetters" expression="execution(* get*())" />
+		<aop:around  pointcut-ref="allGetters" method="myAroundAdvice"/>
+		</aop:aspect>
+	</aop:config>
 </beans>
